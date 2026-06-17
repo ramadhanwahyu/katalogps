@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Umum – Pustaka Salafiyah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="catalog-page">
+
+  <!-- Header sticky -->
+  <header class="cat-header" id="catHeader">
+    <div class="cat-header-inner">
+      <a href="index.html" class="back-link">
+        <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
+          <path d="M13 5l-5 5 5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Beranda
+      </a>
+      <div class="cat-header-title">
+        <p class="cat-eyebrow">Pustaka Salafiyah · Salafi Kids</p>
+        <h1>Katalog Umum</h1>
+      </div>
+      <a href="https://wa.me/6287738426088" target="_blank" class="wa-icon-btn" title="Tanya via WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="19" height="19">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.549 4.107 1.51 5.833L.057 23.571a.75.75 0 00.921.921l5.739-1.453A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.728 9.728 0 01-4.964-1.356l-.355-.211-3.685.933.949-3.591-.232-.369A9.722 9.722 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Toolbar: search + sort + kategori -->
+  <div class="toolbar">
+    <div class="toolbar-inner">
+      <div class="toolbar-row1">
+        <div class="search-wrap">
+          <span class="search-icon">
+            <svg viewBox="0 0 20 20" fill="none" width="16" height="16">
+              <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <input type="text" id="searchInput" placeholder="Cari judul atau penerbit…" autocomplete="off">
+        </div>
+        <select class="sort-select" id="sortSelect">
+          <option value="default">Urutan default</option>
+          <option value="title-az">Judul A–Z</option>
+          <option value="title-za">Judul Z–A</option>
+          <option value="price-asc">Harga: Rendah–Tinggi</option>
+          <option value="price-desc">Harga: Tinggi–Rendah</option>
+        </select>
+      </div>
+      <div class="category-scroll" id="categoryScroll">
+        <button class="cat-chip active" data-cat="all">Semua</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result info -->
+  <div class="result-bar">
+    <span id="resultCount"></span>
+    <span id="pageInfo"></span>
+  </div>
+
+  <!-- States -->
+  <div id="loading" class="state-msg">Memuat katalog…</div>
+  <div id="errorMsg" class="state-msg state-error" style="display:none;"></div>
+
+  <!-- Grid -->
+  <main id="bookGrid" class="book-grid"></main>
+
+  <!-- Pagination -->
+  <div class="pagination" id="pagination"></div>
+
+  <footer class="cat-footer">
+    © Pustaka Salafiyah – Salafi Kids &nbsp;·&nbsp; Data diperbarui otomatis
+  </footer>
+
+  <script src="catalog.js"></script>
+  <script>
+    initCatalog({
+      priceCol:     "Harga jual",
+      discountCol:  "Diskon jual",
+      basePriceCol: "Harga katalog"
+    });
+  </script>
+</body>
+</html>
