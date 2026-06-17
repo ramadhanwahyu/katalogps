@@ -757,7 +757,7 @@ body {
 
   /* .book-cover { flex: 0 0 68px; width: 68px; } */
 
-  .book-cover { flex: 0 0 90px; width: 90px; min-height: 110px; }
+  .book-cover { flex: 0 0 110px; width: 90px; min-height: 110px; }
 
   .pagination { padding: 0 16px; gap: 4px; }
 
