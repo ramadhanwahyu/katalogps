@@ -79,13 +79,18 @@
           </span>
           <input type="text" id="searchInput" placeholder="Cari judul atau penerbit…" autocomplete="off">
         </div>
-        <select class="sort-select" id="sortSelect">
-          <option value="default">Urutan default</option>
-          <option value="title-az">Judul A–Z</option>
-          <option value="title-za">Judul Z–A</option>
-          <option value="price-asc">Harga: Rendah–Tinggi</option>
-          <option value="price-desc">Harga: Tinggi–Rendah</option>
-        </select>
+        <div class="toolbar-row2">
+            <select class="filter-select" id="publisherSelect">
+                <option value="all">Semua penerbit</option>
+            </select>
+            <select class="sort-select" id="sortSelect">
+                <option value="default">Urutan asli</option>
+                <option value="title-az">Judul A–Z</option>
+                <option value="title-za">Judul Z–A</option>
+                <option value="price-asc">Harga: Rendah–Tinggi</option>
+                <option value="price-desc">Harga: Tinggi–Rendah</option>
+            </select>
+        </div>
       </div>
       <div class="category-scroll" id="categoryScroll">
         <button class="cat-chip active" data-cat="all">Semua</button>

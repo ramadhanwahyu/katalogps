@@ -12,6 +12,7 @@ let activeCat   = "all";
 let searchQuery = "";
 let sortMode    = "default";
 let CONFIG      = {};
+let activePublisher = "all";
 
 // ===== ELEMEN =====
 const grid        = document.getElementById("bookGrid");
@@ -104,6 +105,27 @@ function buildCategories(books) {
   });
 }
 
+function buildPublishers(books) {
+  const select = document.getElementById("publisherSelect");
+  if (!select) return;
+
+  const set = new Set();
+  books.forEach(b => {
+    const v = String(b["Penerbit"] || "").trim();
+    if (v) set.add(v);
+  });
+
+  // Hapus opsi lama kecuali "Semua penerbit"
+  [...select.options].slice(1).forEach(o => o.remove());
+
+  [...set].sort((a, b) => a.localeCompare(b, "id")).forEach(pub => {
+    const opt = document.createElement("option");
+    opt.value = pub;
+    opt.textContent = pub;
+    select.appendChild(opt);
+  });
+}
+
 function onCatClick(btn, cat) {
   activeCat = cat;
   catScroll.querySelectorAll(".cat-chip").forEach(c => c.classList.remove("active"));
@@ -121,11 +143,20 @@ function applyFilters() {
       || String(b["Nama Produk"] || "").toLowerCase().includes(q)
       || String(b["Penerbit"]    || "").toLowerCase().includes(q);
 
+    // const matchCat = activeCat === "all"
+    //   || ["Kategori 1", "Kategori 2", "Kategori 3"]
+    //       .some(k => String(b[k] || "").trim() === activeCat);
+
+    // return matchSearch && matchCat;
+
     const matchCat = activeCat === "all"
       || ["Kategori 1", "Kategori 2", "Kategori 3"]
           .some(k => String(b[k] || "").trim() === activeCat);
 
-    return matchSearch && matchCat;
+    const matchPublisher = activePublisher === "all"
+      || String(b["Penerbit"] || "").trim() === activePublisher;
+
+    return matchSearch && matchCat && matchPublisher;
   });
 
   result = sortBooks(result);
@@ -200,7 +231,7 @@ function renderCards(books) {
              <path d="M6 3H3a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1v-3M10 2h4m0 0v4m0-4L7 9"
                stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
            </svg>
-           Detail
+           Lihat Produk
          </a>` : "";
 
     return `
@@ -271,6 +302,7 @@ async function fetchBooks() {
     loadingEl.style.display = "none";
 
     buildCategories(allBooks);
+    buildPublishers(allBooks);
     applyFilters();
   } catch (err) {
     loadingEl.style.display = "none";
@@ -295,6 +327,15 @@ function initCatalog(config) {
   if (sortSelect) {
     sortSelect.addEventListener("change", e => {
       sortMode = e.target.value;
+      currentPage = 1;
+      applyFilters();
+    });
+  }
+
+  const publisherSelect = document.getElementById("publisherSelect");
+  if (publisherSelect) {
+    publisherSelect.addEventListener("change", e => {
+      activePublisher = e.target.value;
       currentPage = 1;
       applyFilters();
     });
