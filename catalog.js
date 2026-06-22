@@ -1,6 +1,6 @@
 // ===== KONFIGURASI =====
-const SPREADSHEET_ID = "1FRlb80L324rGvVmfOkYVL2MNGurpz4UUSCtmhn19h_g";
-const SHEET_NAME     = "Sheet10";
+const SPREADSHEET_ID = "1yUglfPNOalQV3KWHGC9JsWkqgnmOWxgIR5Ndim1IqFw";
+const SHEET_NAME     = "Sheet1";
 const API_URL        = `https://opensheet.elk.sh/${SPREADSHEET_ID}/${encodeURIComponent(SHEET_NAME)}`;
 const PER_PAGE       = 30;
 
